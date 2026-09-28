@@ -1,0 +1,17 @@
+{
+  "name": "rtf-escape-encoder",
+  "version": "0.1.0",
+  "description": "Escapes and unescapes special characters in rich text format including Unicode fallback escapes.",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": "./src/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {}
+}
