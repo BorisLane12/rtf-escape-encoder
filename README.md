@@ -31,3 +31,10 @@ The trade-off: `unescapeRtf` is an **escape decoder**, not a full RTF parser. It
 - **`\'hh` hex escapes** are decoded as Windows-1252 for bytes 0x80–0x9F and Latin-1 elsewhere. RTF has no declared encoding for these bytes; Windows-1252 is what Word uses.
 - **The fallback byte after `\uN?`** is always skipped on decode. The RTF spec says a reader that can render the Unicode character must ignore the fallback; since our decoder always renders it, we always skip.
 - **`escapeRtfAscii`** replaces each non-ASCII character with a single `?`, not a phonetically similar ASCII substitute. This matches what legacy RTF readers display.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
